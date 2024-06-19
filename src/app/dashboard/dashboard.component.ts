@@ -28,6 +28,9 @@ export class DashboardComponent {
       {
         label: 'Plants',
         icon: 'pi pi-briefcase',
+        command: () => {
+          this.list();
+        },
       },
       {
         label: 'About',
