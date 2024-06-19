@@ -1,0 +1,14 @@
+.home-container-main {
+    padding: 0.5%;
+    margin: 1% 0% 0% 0%;
+}
+
+.home-container-sec {
+  background-image: url("../../assets/5423403.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-blend-mode: multiply;
+  height: 85vh;
+}
