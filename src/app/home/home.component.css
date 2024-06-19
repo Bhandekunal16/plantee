@@ -3,6 +3,10 @@
   margin: 1% 0% 0% 0%;
 }
 
+.home-container-main h1 {
+  color: #719646;
+}
+
 .home-container-sec {
   background-image: url("../../assets/5423403.jpg");
   background-size: cover;
@@ -11,10 +15,29 @@
   background-attachment: fixed;
   background-blend-mode: multiply;
   height: 85vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-container-sec-button-grid {
+  width: 30vw;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1%;
+}
+
+.home-container-sec-button-grid button {
+  margin-left: 1%;
 }
 
 @media (max-width: 600px) {
   .home-container-sec {
     height: 50vh;
+  }
+
+  .home-container-sec-button-grid {
+    width: 100%;
   }
 }

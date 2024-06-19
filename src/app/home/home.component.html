@@ -1,3 +1,25 @@
 <div class="home-container-main">
-  <div class="home-container-sec"></div>
+  <h1>Plantee</h1>
+  <div class="home-container-sec">
+    <div class="home-container-sec-button-grid">
+      <p-button
+        label="About us"
+        [outlined]="true"
+        severity="contrast"
+        (click)="about()"
+      />
+      <p-button
+        label="Find"
+        [outlined]="true"
+        severity="contrast"
+        (click)="list()"
+      />
+      <p-button
+        label="Contact us"
+        [outlined]="true"
+        severity="contrast"
+        (click)="contact()"
+      />
+    </div>
+  </div>
 </div>
