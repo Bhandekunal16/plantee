@@ -21,7 +21,7 @@ export class DashboardComponent {
         icon: 'pi pi-home',
       },
       {
-        label: 'Project',
+        label: 'Plants',
         icon: 'pi pi-briefcase',
       },
       {
@@ -31,10 +31,6 @@ export class DashboardComponent {
       {
         label: 'Contact',
         icon: 'pi pi-envelope',
-      },
-      {
-        label: 'Package',
-        icon: 'pi pi-box',
       },
     ];
   }
