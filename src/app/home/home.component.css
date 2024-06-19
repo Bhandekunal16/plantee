@@ -1,6 +1,6 @@
 .home-container-main {
-    padding: 0.5%;
-    margin: 1% 0% 0% 0%;
+  padding: 0.5%;
+  margin: 1% 0% 0% 0%;
 }
 
 .home-container-sec {
@@ -11,4 +11,10 @@
   background-attachment: fixed;
   background-blend-mode: multiply;
   height: 85vh;
+}
+
+@media (max-width: 600px) {
+  .home-container-sec {
+    height: 50vh;
+  }
 }
