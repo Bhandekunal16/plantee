@@ -3,6 +3,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
+import { ListComponent } from './list/list.component';
 
 export const routes: Routes = [
   {
@@ -13,6 +14,7 @@ export const routes: Routes = [
       { component: HomeComponent, path: '' },
       { component: HomeComponent, path: 'home' },
       { component: AboutComponent, path: 'about' },
+      { component: ListComponent, path: 'list' },
     ],
   },
 ];

@@ -57,4 +57,8 @@ export class DashboardComponent {
   about(): void {
     this.router.navigate(['/about']);
   }
+
+  list(): void {
+    this.router.navigate(['/list']);
+  }
 }
