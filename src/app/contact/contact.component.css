@@ -71,3 +71,9 @@
   right: 0;
   z-index: 999;
 }
+
+@media (max-width: 600px) {
+  .contact-container-form {
+    width: 95vw;
+  }
+}
