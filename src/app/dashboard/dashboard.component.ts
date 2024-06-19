@@ -32,6 +32,9 @@ export class DashboardComponent {
       {
         label: 'About',
         icon: 'pi pi-user',
+        command: () => {
+          this.about();
+        },
       },
       {
         label: 'Contact',
@@ -49,5 +52,9 @@ export class DashboardComponent {
 
   home(): void {
     this.router.navigate(['/home']);
+  }
+
+  about(): void {
+    this.router.navigate(['/about']);
   }
 }
