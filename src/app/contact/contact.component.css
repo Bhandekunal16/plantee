@@ -52,14 +52,15 @@
   padding: 10px 20px;
   font-size: 1rem;
   color: #fff;
-  background-color: #007bff;
+  background-color: #314222;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  border: solid #000 1px;
 }
 
 .contact-container-form button:hover {
-  background-color: #0056b3;
+  background-color: #719646;
 }
 
 .message-card {
