@@ -1,0 +1,6 @@
+.list-container-outer {
+  width: 97vw;
+  height: 100vh;
+  overflow: auto;
+  padding: 1%;
+}
