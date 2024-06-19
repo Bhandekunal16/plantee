@@ -1,1 +1,25 @@
-<p>list works!</p>
+<p-table
+  [value]="products"
+  [tableStyle]="{
+    'min-width': '50rem',
+    'background-color ': 'red',
+    width: '100%'
+  }"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>family</th>
+      <th>genus</th>
+      <th>scientfiicname</th>
+      <th>subgenus</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+    <tr>
+      <td>{{ product.family }}</td>
+      <td>{{ product.genus }}</td>
+      <td>{{ product.scientfiicname }}</td>
+      <td>{{ product.subgenus }}</td>
+    </tr>
+  </ng-template>
+</p-table>
