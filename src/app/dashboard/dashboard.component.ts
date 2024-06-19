@@ -21,6 +21,9 @@ export class DashboardComponent {
       {
         label: 'Home',
         icon: 'pi pi-home',
+        command: () => {
+          this.home();
+        },
       },
       {
         label: 'Plants',
@@ -42,5 +45,9 @@ export class DashboardComponent {
 
   contact(): void {
     this.router.navigate(['/contact']);
+  }
+
+  home(): void {
+    this.router.navigate(['/home']);
   }
 }
