@@ -1,0 +1,26 @@
+<div class="contact-container">
+  <div class="message-card">
+    <p-messages
+      [value]="msg"
+      [closable]="true"
+      [enableService]="false"
+    ></p-messages>
+  </div>
+  <form class="contact-container-form" [formGroup]="myForm">
+    <div>
+      <h1>Contact Us</h1>
+    </div>
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" formControlName="email" />
+
+    <label for="message">Message</label>
+    <textarea
+      id="message"
+      name="message"
+      rows="5"
+      formControlName="message"
+    ></textarea>
+
+    <button type="submit" (click)="submit()">Send</button>
+  </form>
+</div>

@@ -14,6 +14,8 @@ import { ButtonModule } from 'primeng/button';
 export class DashboardComponent {
   public item: any[] | undefined;
 
+  constructor(private router: Router) {}
+
   ngOnInit() {
     this.item = [
       {
@@ -31,7 +33,14 @@ export class DashboardComponent {
       {
         label: 'Contact',
         icon: 'pi pi-envelope',
+        command: () => {
+          this.contact();
+        },
       },
     ];
+  }
+
+  contact(): void {
+    this.router.navigate(['/contact']);
   }
 }
