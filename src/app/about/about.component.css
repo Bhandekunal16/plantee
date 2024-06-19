@@ -2,7 +2,7 @@
   height: 98vh;
   width: 98vw;
   background-color: #314222;
-  margin: 1% 0% 0% 0%;
+  margin: 1% 0px 0px 0px;
   color: #eff3b8;
   padding: 1%;
 }
@@ -12,7 +12,7 @@
 }
 
 .about-container-inner {
-  width: 100%;
+  width: 99%;
   height: fit-content;
   background-color: #719646;
   border-radius: 8px;
@@ -23,4 +23,12 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transform: translateY(-7px);
   transition: box-shadow 0.3s, transform 0.3s;
+}
+
+@media (max-width: 600px) {
+
+    .about-container {
+        width: 98vw;
+        margin: 0%;
+    }
 }
