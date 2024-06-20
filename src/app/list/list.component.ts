@@ -9,6 +9,7 @@ import { catchError, debounceTime, switchMap, throwError } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -24,7 +25,7 @@ export class ListComponent implements OnInit {
   flag2 = false;
   flag3 = false;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private route: Router) {
     this.myForm = new FormGroup({
       family: new FormControl(''),
       scientfiicname: new FormControl(''),
@@ -70,6 +71,14 @@ export class ListComponent implements OnInit {
 
   view(id: any) {
     console.log(id);
+    if (id) {
+      this.home();
+      localStorage.setItem('name', id);
+    }
+  }
+
+  home(): void {
+    this.route.navigate(['/view']);
   }
 
   findWithFamily(body: any): Observable<any> {
