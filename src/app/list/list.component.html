@@ -27,6 +27,7 @@
       />
     </form>
   </div>
+
   <p-table
     [value]="products"
     [tableStyle]="{
@@ -35,6 +36,12 @@
       width: '100%'
     }"
   >
+    <!-- <ng-container *ngIf="products.length == 0">
+      <tr>
+        <td colspan="4">Data not found</td>
+      </tr>
+    </ng-container> -->
+
     <ng-template pTemplate="header">
       <tr>
         <th>family</th>
@@ -43,12 +50,19 @@
         <th>subgenus</th>
       </tr>
     </ng-template>
+
     <ng-template pTemplate="body" let-product>
       <tr>
         <td>{{ product.family }}</td>
         <td>{{ product.genus }}</td>
         <td>{{ product.scientfiicname }}</td>
         <td>{{ product.subgenus }}</td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="5">No customers found.</td>
       </tr>
     </ng-template>
   </p-table>

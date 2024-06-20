@@ -18,7 +18,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './list.component.css',
 })
 export class ListComponent implements OnInit {
-  products!: any[];
+  products: any[] = [];
   public myForm: FormGroup;
   flag = false;
   flag2 = false;
