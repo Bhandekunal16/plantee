@@ -21,6 +21,7 @@
   width: 50vw;
   background-color: transparent;
   color: #eff3b8;
+  border: solid #8fb062 0.5px;
 }
 
 .loader-container {
