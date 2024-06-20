@@ -70,7 +70,6 @@ export class ListComponent implements OnInit {
   }
 
   view(id: any) {
-    console.log(id);
     if (id) {
       this.home();
       localStorage.setItem('name', id);
