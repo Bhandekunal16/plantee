@@ -10,7 +10,13 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { catchError, throwError } from 'rxjs';
+import {
+  catchError,
+  debounceTime,
+  distinctUntilChanged,
+  switchMap,
+  throwError,
+} from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
@@ -85,9 +91,14 @@ export class ListComponent implements OnInit {
         { headers }
       )
       .pipe(
-        catchError((error) => {
-          return throwError(error);
-        })
+        debounceTime(300),
+        switchMap(() =>
+          this.http.post<any>(
+            'https://townhall-ten.vercel.app/plant/getByFamilyName',
+            body,
+            { headers }
+          )
+        )
       );
   }
 
@@ -103,6 +114,14 @@ export class ListComponent implements OnInit {
         { headers }
       )
       .pipe(
+        debounceTime(300),
+        switchMap(() =>
+          this.http.post<any>(
+            'https://townhall-ten.vercel.app/plant/getCollectionByGenusName',
+            body,
+            { headers }
+          )
+        ),
         catchError((error) => {
           return throwError(error);
         })
@@ -121,6 +140,14 @@ export class ListComponent implements OnInit {
         { headers }
       )
       .pipe(
+        debounceTime(300),
+        switchMap(() =>
+          this.http.post<any>(
+            'https://townhall-ten.vercel.app/plant/getCollectionByScientificName',
+            body,
+            { headers }
+          )
+        ),
         catchError((error) => {
           return throwError(error);
         })
