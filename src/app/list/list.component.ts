@@ -47,12 +47,21 @@ export class ListComponent implements OnInit {
     if (family !== '') {
       this.flag2 = true;
       this.flag3 = true;
+      this.findWithFamily({ name: family }).subscribe((ele) => {
+        this.products = ele.data;
+      });
     } else if (scientfiicname !== '') {
       this.flag = true;
       this.flag3 = true;
+      this.findWithSpe({ name: scientfiicname }).subscribe((ele) => {
+        this.products = ele.data;
+      });
     } else if (genus !== '') {
       this.flag = true;
       this.flag2 = true;
+      this.findWithGenus({ name: genus }).subscribe((ele) => {
+        this.products = ele.data;
+      });
     } else {
       this.flag = false;
       this.flag2 = false;
@@ -65,6 +74,61 @@ export class ListComponent implements OnInit {
       this.products = ele.data;
     });
   }
+
+  findWithFamily(body: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    return this.http
+      .post<any>(
+        'https://townhall-ten.vercel.app/plant/getByFamilyName',
+        body,
+        { headers }
+      )
+      .pipe(
+        catchError((error) => {
+          return throwError(error);
+        })
+      );
+  }
+
+  findWithGenus(body: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    return this.http
+      .post<any>(
+        'https://townhall-ten.vercel.app/plant/getCollectionByGenusName',
+        body,
+        { headers }
+      )
+      .pipe(
+        catchError((error) => {
+          return throwError(error);
+        })
+      );
+  }
+
+  findWithSpe(body: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    return this.http
+      .post<any>(
+        'https://townhall-ten.vercel.app/plant/getCollectionByScientificName',
+        body,
+        { headers }
+      )
+      .pipe(
+        catchError((error) => {
+          return throwError(error);
+        })
+      );
+  }
+
   customerUnsubscribed(): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
