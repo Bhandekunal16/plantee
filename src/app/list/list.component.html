@@ -46,7 +46,7 @@
     </ng-template>
 
     <ng-template pTemplate="body" let-product>
-      <tr>
+      <tr (click)="view(product.scientfiicname)">
         <td>{{ product.family }}</td>
         <td>{{ product.genus }}</td>
         <td>{{ product.scientfiicname }}</td>

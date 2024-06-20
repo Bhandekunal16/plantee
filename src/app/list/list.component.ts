@@ -68,6 +68,10 @@ export class ListComponent implements OnInit {
     });
   }
 
+  view(id: any) {
+    console.log(id);
+  }
+
   findWithFamily(body: any): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
