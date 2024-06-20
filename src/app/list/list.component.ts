@@ -3,20 +3,9 @@ import {
   HttpClientModule,
   HttpHeaders,
 } from '@angular/common/http';
-import {
-  FormGroup,
-  FormControl,
-  Validators,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import {
-  catchError,
-  debounceTime,
-  distinctUntilChanged,
-  switchMap,
-  throwError,
-} from 'rxjs';
+import { catchError, debounceTime, switchMap, throwError } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
