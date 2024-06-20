@@ -1,3 +1,11 @@
+<div class="message-card">
+  <p-messages
+    [value]="msg"
+    [closable]="true"
+    [enableService]="false"
+  ></p-messages>
+</div>
+
 <div class="view-container">
   <div class="loader-container" *ngIf="family == ''">
     <div *ngIf="family == ''" class="loader"></div>
@@ -10,5 +18,27 @@
     <p>Tribe : {{ tribe == "" ? "not defined" : tribe }}</p>
     <p>Subgenus : {{ subgenus == "" ? "not defined" : subgenus }}</p>
     <p>Name : {{ name }}</p>
+    <p-button
+      label="Add Something"
+      [outlined]="true"
+      severity="contrast"
+      *ngIf="!flag"
+      (click)="setter()"
+    />
   </div>
+
+  <form class="contact-container-form" [formGroup]="myForm" *ngIf="flag">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" formControlName="email" />
+
+    <label for="message">Message</label>
+    <textarea
+      id="message"
+      name="message"
+      rows="5"
+      formControlName="message"
+    ></textarea>
+
+    <button type="submit" (click)="addRequest()">Send</button>
+  </form>
 </div>
