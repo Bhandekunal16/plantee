@@ -13,7 +13,6 @@ import { ButtonModule } from 'primeng/button';
 })
 export class DashboardComponent {
   public item: any[] | undefined;
-
   constructor(private router: Router) {}
 
   ngOnInit() {
@@ -49,19 +48,19 @@ export class DashboardComponent {
     ];
   }
 
-  contact(): void {
+  private contact(): void {
     this.router.navigate(['/contact']);
   }
 
-  home(): void {
+  private home(): void {
     this.router.navigate(['/home']);
   }
 
-  about(): void {
+  private about(): void {
     this.router.navigate(['/about']);
   }
 
-  list(): void {
+  private list(): void {
     this.router.navigate(['/list']);
   }
 }
