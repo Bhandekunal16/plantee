@@ -12,15 +12,15 @@ import { ButtonModule } from 'primeng/button';
 export class HomeComponent {
   constructor(private router: Router) {}
 
-  contact(): void {
+  public contact(): void {
     this.router.navigate(['/contact']);
   }
 
-  about(): void {
+  public about(): void {
     this.router.navigate(['/about']);
   }
 
-  list(): void {
+  public list(): void {
     this.router.navigate(['/list']);
   }
 }
