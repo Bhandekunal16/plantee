@@ -2,15 +2,29 @@
   <div class="list-container-outer-finder">
     <form [formGroup]="myForm">
       <label>family </label>
-      <input type="text" placeholder="family" formControlName="family" />
+      <input
+        type="text"
+        placeholder="family"
+        formControlName="family"
+        (change)="selector()"
+        [readonly]="flag"
+      />
       <label>scientfiicname </label>
       <input
         type="text"
         placeholder="scientfiicname"
         formControlName="scientfiicname"
+        (change)="selector()"
+        [readonly]="flag2"
       />
       <label>genus </label>
-      <input type="text" placeholder="genus" formControlName="genus" />
+      <input
+        type="text"
+        placeholder="genus"
+        formControlName="genus"
+        (change)="selector()"
+        [readonly]="flag3"
+      />
     </form>
   </div>
   <p-table

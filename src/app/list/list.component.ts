@@ -25,6 +25,9 @@ import { CommonModule } from '@angular/common';
 export class ListComponent implements OnInit {
   products!: any[];
   public myForm: FormGroup;
+  flag = false;
+  flag2 = false;
+  flag3 = false;
 
   constructor(private http: HttpClient) {
     this.myForm = new FormGroup({
@@ -32,6 +35,29 @@ export class ListComponent implements OnInit {
       scientfiicname: new FormControl(''),
       genus: new FormControl(''),
     });
+  }
+
+  selector() {
+    const family = this.myForm.get('family')?.value;
+    const scientfiicname = this.myForm.get('scientfiicname')?.value;
+    const genus = this.myForm.get('genus')?.value;
+
+    console.log(family, scientfiicname, genus);
+
+    if (family !== '') {
+      this.flag2 = true;
+      this.flag3 = true;
+    } else if (scientfiicname !== '') {
+      this.flag = true;
+      this.flag3 = true;
+    } else if (genus !== '') {
+      this.flag = true;
+      this.flag2 = true;
+    } else {
+      this.flag = false;
+      this.flag2 = false;
+      this.flag3 = false;
+    }
   }
 
   ngOnInit(): void {
