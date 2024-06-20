@@ -4,3 +4,17 @@
   overflow: auto;
   padding: 1%;
 }
+
+.list-container-outer-finder {
+  padding: 1%;
+  border: dotted #000 1px;
+}
+
+.list-container-outer-finder form {
+    display: flex;
+    flex-direction: column;
+}
+
+.list-container-outer-finder input {
+    width: 50vw;
+}

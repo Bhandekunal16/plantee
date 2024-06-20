@@ -3,6 +3,12 @@ import {
   HttpClientModule,
   HttpHeaders,
 } from '@angular/common/http';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
@@ -12,13 +18,22 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [HttpClientModule, TableModule, CommonModule],
+  imports: [HttpClientModule, TableModule, CommonModule, ReactiveFormsModule],
   templateUrl: './list.component.html',
   styleUrl: './list.component.css',
 })
 export class ListComponent implements OnInit {
   products!: any[];
-  constructor(private http: HttpClient) {}
+  public myForm: FormGroup;
+
+  constructor(private http: HttpClient) {
+    this.myForm = new FormGroup({
+      family: new FormControl(''),
+      scientfiicname: new FormControl(''),
+      genus: new FormControl(''),
+    });
+  }
+
   ngOnInit(): void {
     this.customerUnsubscribed().subscribe((ele) => {
       this.products = ele.data;

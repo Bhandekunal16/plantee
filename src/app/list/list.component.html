@@ -1,4 +1,18 @@
 <div class="list-container-outer">
+  <div class="list-container-outer-finder">
+    <form [formGroup]="myForm">
+      <label>family </label>
+      <input type="text" placeholder="family" formControlName="family" />
+      <label>scientfiicname </label>
+      <input
+        type="text"
+        placeholder="scientfiicname"
+        formControlName="scientfiicname"
+      />
+      <label>genus </label>
+      <input type="text" placeholder="genus" formControlName="genus" />
+    </form>
+  </div>
   <p-table
     [value]="products"
     [tableStyle]="{
