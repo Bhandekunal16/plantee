@@ -8,6 +8,8 @@
 .list-container-outer-finder {
   padding: 1%;
   border: dotted #000 1px;
+  background-color: #314222;
+  color: #eff3b8;
 }
 
 .list-container-outer-finder form {
@@ -17,6 +19,8 @@
 
 .list-container-outer-finder input {
   width: 50vw;
+  background-color: transparent;
+  color: #eff3b8;
 }
 
 .loader-container {
@@ -42,4 +46,12 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+p-table th {
+  background-color: #719646;
+}
+
+p-table td {
+  background-color: #8fb062;
 }
