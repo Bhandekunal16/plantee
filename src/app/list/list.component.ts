@@ -34,9 +34,11 @@ export class ListComponent implements OnInit {
   }
 
   selector(): void {
-    const family: string = this.myForm.get('family')?.value;
-    const scientfiicname: string = this.myForm.get('scientfiicname')?.value;
-    const genus: string = this.myForm.get('genus')?.value;
+    const [family, scientfiicname, genus]: [string, string, string] = [
+      this.myForm.get('family')?.value,
+      this.myForm.get('scientfiicname')?.value,
+      this.myForm.get('genus')?.value,
+    ];
 
     if (family !== '') {
       this.flag2 = true;
