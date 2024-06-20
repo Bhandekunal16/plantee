@@ -52,8 +52,6 @@ export class ViewComponent implements OnInit {
   ngOnInit(): void {
     this.findWithSpe({ name: localStorage.getItem('name') }).subscribe(
       (ele) => {
-        console.log(ele);
-
         this.family = ele.data[0].family;
         this.genus = ele.data[0].genus;
         this.scientfiicname = ele.data[0].scientfiicname;
