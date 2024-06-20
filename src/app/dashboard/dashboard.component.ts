@@ -15,6 +15,22 @@ export class DashboardComponent {
   public item: any[] | undefined;
   constructor(private router: Router) {}
 
+  private contact(): void {
+    this.router.navigate(['/contact']);
+  }
+
+  private home(): void {
+    this.router.navigate(['/home']);
+  }
+
+  private about(): void {
+    this.router.navigate(['/about']);
+  }
+
+  private list(): void {
+    this.router.navigate(['/list']);
+  }
+
   ngOnInit() {
     this.item = [
       {
@@ -46,21 +62,5 @@ export class DashboardComponent {
         },
       },
     ];
-  }
-
-  private contact(): void {
-    this.router.navigate(['/contact']);
-  }
-
-  private home(): void {
-    this.router.navigate(['/home']);
-  }
-
-  private about(): void {
-    this.router.navigate(['/about']);
-  }
-
-  private list(): void {
-    this.router.navigate(['/list']);
   }
 }
