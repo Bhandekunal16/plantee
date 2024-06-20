@@ -3,6 +3,8 @@
   padding: 1%;
   margin-top: 1%;
   border-radius: 8px;
+  background-color: #314222;
+  color: #eff3b8;
 }
 
 .loader {
