@@ -34,14 +34,6 @@ export class ViewComponent implements OnInit {
   public myForm: FormGroup;
   public flag: boolean = false;
   public msg: Message[] | any;
-
-  constructor(private http: HttpClient) {
-    this.myForm = new FormGroup({
-      email: new FormControl(''),
-      message: new FormControl(''),
-    });
-  }
-
   public family: string | undefined = '';
   public genus: string | undefined;
   public scientfiicname: string | undefined;
@@ -49,6 +41,13 @@ export class ViewComponent implements OnInit {
   public subgenus: string | undefined;
   public tribe: string | undefined;
   public name: string | undefined;
+
+  constructor(private http: HttpClient) {
+    this.myForm = new FormGroup({
+      email: new FormControl(''),
+      message: new FormControl(''),
+    });
+  }
 
   ngOnInit(): void {
     this.findWithSpe({ name: localStorage.getItem('name') }).subscribe(
