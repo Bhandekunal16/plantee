@@ -72,10 +72,8 @@ export class ListComponent implements OnInit {
   }
 
   view(id: any) {
-    if (id) {
-      this.home();
-      localStorage.setItem('name', id);
-    }
+    this.home();
+    localStorage.setItem('name', id);
   }
 
   home(): void {
