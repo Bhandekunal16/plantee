@@ -1,1 +1,14 @@
-<p>view works!</p>
+<div class="view-container">
+  <div class="loader-container" *ngIf="family == ''">
+    <div *ngIf="family == ''" class="loader"></div>
+  </div>
+  <div *ngIf="family !== ''">
+    <h1>{{ family }}</h1>
+    <p>Genus : {{ genus }}</p>
+    <p>Scientific name : {{ scientfiicname }}</p>
+    <p>Sub family : {{ subfamily == "" ? "not defined" : subfamily }}</p>
+    <p>Tribe : {{ tribe == "" ? "not defined" : tribe }}</p>
+    <p>Subgenus : {{ subgenus == "" ? "not defined" : subgenus }}</p>
+    <p>Name : {{ name }}</p>
+  </div>
+</div>
