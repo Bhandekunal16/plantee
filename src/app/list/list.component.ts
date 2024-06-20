@@ -19,11 +19,11 @@ import { Router } from '@angular/router';
   styleUrl: './list.component.css',
 })
 export class ListComponent implements OnInit {
-  products: any[] = [];
+  public products: any[] = [];
   public myForm: FormGroup;
-  flag = false;
-  flag2 = false;
-  flag3 = false;
+  public flag: boolean = false;
+  public flag2: boolean = false;
+  public flag3: boolean = false;
 
   constructor(private http: HttpClient, private route: Router) {
     this.myForm = new FormGroup({
@@ -33,10 +33,10 @@ export class ListComponent implements OnInit {
     });
   }
 
-  selector() {
-    const family = this.myForm.get('family')?.value;
-    const scientfiicname = this.myForm.get('scientfiicname')?.value;
-    const genus = this.myForm.get('genus')?.value;
+  selector(): void {
+    const family: string = this.myForm.get('family')?.value;
+    const scientfiicname: string = this.myForm.get('scientfiicname')?.value;
+    const genus: string = this.myForm.get('genus')?.value;
 
     if (family !== '') {
       this.flag2 = true;
