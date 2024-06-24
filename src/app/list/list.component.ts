@@ -168,4 +168,36 @@ export class ListComponent implements OnInit {
         })
       );
   }
+
+  arrayToCSV() {
+    const csvRows = [];
+
+    const headers = Object.keys(this.products[0]);
+    csvRows.push(headers.join(','));
+
+    for (const row of this.products) {
+      const values = headers.map((header) => {
+        const escaped = ('' + row[header]).replace(/"/g, '\\"');
+        return `"${escaped}"`;
+      });
+      csvRows.push(values.join(','));
+    }
+
+    return csvRows.join('\n');
+  }
+
+  downloadCSV(csvData: any, filename: any) {
+    const blob = new Blob([csvData], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.setAttribute('href', url);
+    a.setAttribute('download', filename);
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    window.URL.revokeObjectURL(url);
+  }
 }
