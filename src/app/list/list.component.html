@@ -28,6 +28,10 @@
     </form>
   </div>
 
+  <div class="dowload_file_div">
+    <p-button label="Download" severity="success" (click)="arrayToCSV()" />
+  </div>
+
   <p-table
     [value]="products"
     [tableStyle]="{
@@ -65,4 +69,3 @@
     <div class="loader"></div>
   </div>
 </div>
-<p-button label="Success" severity="success" (click)="arrayToCSV()" />
