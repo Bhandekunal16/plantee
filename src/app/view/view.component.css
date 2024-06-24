@@ -5,6 +5,8 @@
   border-radius: 8px;
   background-color: #314222;
   color: #eff3b8;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .loader {
@@ -88,4 +90,11 @@
 
 .contact-container-form button:hover {
   background-color: #719646;
+}
+
+@media (max-width: 600px) {
+  .view-container {
+    display: flex;
+    flex-direction: column;
+  }
 }
