@@ -10,11 +10,18 @@ import { Observable } from 'rxjs/internal/Observable';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [HttpClientModule, TableModule, CommonModule, ReactiveFormsModule],
+  imports: [
+    HttpClientModule,
+    TableModule,
+    CommonModule,
+    ReactiveFormsModule,
+    ButtonModule,
+  ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.css',
 })
@@ -183,7 +190,7 @@ export class ListComponent implements OnInit {
       csvRows.push(values.join(','));
     }
 
-    return csvRows.join('\n');
+    this.downloadCSV(csvRows.join('\n'), 'download.csv');
   }
 
   downloadCSV(csvData: any, filename: any) {
