@@ -54,12 +54,14 @@
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="emptymessage" class="loader-container">
+    <ng-template pTemplate="emptymessage">
       <tr>
         <td colspan="5">No data found.</td>
       </tr>
-
-      <div class="loader"></div>
     </ng-template>
   </p-table>
+
+  <div class="loader-container" *ngIf="products.length == 0">
+    <div class="loader"></div>
+  </div>
 </div>
