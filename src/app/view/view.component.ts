@@ -45,7 +45,7 @@ export class ViewComponent implements OnInit {
   async ngOnInit() {
     const name = await this.getter();
 
-    this.findWithSpe({
+    await this.findWithSpe({
       name: JSON.parse(name.decrypted.replace(/'/g, '"')).data,
     }).subscribe((ele) => {
       this.family = ele.data[0].family;
