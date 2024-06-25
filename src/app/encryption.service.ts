@@ -52,8 +52,19 @@ export class EncryptionService {
     return resData;
   }
 
-  async setToLocalStorage() {
+  async setToLocalStorage(key: any, input: any): Promise<any> {
     try {
+      const convert = await this.encrypt(input);
+      localStorage.setItem(key, convert);
+    } catch (error: any) {
+      return new Error(error);
+    }
+  }
+
+  async getFromLocalStorage(key: any): Promise<any> {
+    try {
+      const normal = localStorage.getItem(key);
+      return await this.decrypt(normal);
     } catch (error: any) {
       return new Error(error);
     }
