@@ -1,19 +1,15 @@
 import { Component } from '@angular/core';
-import {
-  HttpClient,
-  HttpClientModule,
-  HttpHeaders,
-} from '@angular/common/http';
-import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FormGroup, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
 import { catchError, throwError } from 'rxjs';
-import { MessagesModule } from 'primeng/messages';
 import { Message } from 'primeng/api';
+import { SharedModule } from '../shared/shared.module';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [HttpClientModule, ReactiveFormsModule, MessagesModule],
+  imports: [SharedModule],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css',
 })

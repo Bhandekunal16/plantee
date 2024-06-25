@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  HttpClient,
-  HttpClientModule,
-  HttpHeaders,
-} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {
   Observable,
   debounceTime,
@@ -11,22 +7,14 @@ import {
   catchError,
   throwError,
 } from 'rxjs';
-import { CommonModule } from '@angular/common';
-import { ButtonModule } from 'primeng/button';
-import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
-import { MessagesModule } from 'primeng/messages';
+import { FormGroup, FormControl } from '@angular/forms';
 import { Message } from 'primeng/api';
+import { SharedModule } from '../shared/shared.module';
 
 @Component({
   selector: 'app-view',
   standalone: true,
-  imports: [
-    HttpClientModule,
-    CommonModule,
-    ButtonModule,
-    ReactiveFormsModule,
-    MessagesModule,
-  ],
+  imports: [SharedModule],
   templateUrl: './view.component.html',
   styleUrl: './view.component.css',
 })

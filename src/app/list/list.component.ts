@@ -1,27 +1,15 @@
-import {
-  HttpClient,
-  HttpClientModule,
-  HttpHeaders,
-} from '@angular/common/http';
-import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { catchError, debounceTime, switchMap, throwError } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
-import { TableModule } from 'primeng/table';
-import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { ButtonModule } from 'primeng/button';
+import { SharedModule } from '../shared/shared.module';
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [
-    HttpClientModule,
-    TableModule,
-    CommonModule,
-    ReactiveFormsModule,
-    ButtonModule,
-  ],
+  imports: [SharedModule],
   templateUrl: './list.component.html',
   styleUrl: './list.component.css',
 })

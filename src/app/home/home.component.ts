@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ButtonModule } from 'primeng/button';
+import { SharedModule } from '../shared/shared.module';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ButtonModule],
+  imports: [SharedModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
