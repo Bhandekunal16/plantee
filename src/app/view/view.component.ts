@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {
   Observable,
@@ -30,7 +30,7 @@ export class ViewComponent implements OnInit {
   public subgenus: string | undefined;
   public tribe: string | undefined;
   public name: string | undefined;
-
+  mydata: any;
   constructor(private http: HttpClient, private encryption: EncryptionService) {
     this.myForm = new FormGroup({
       email: new FormControl(''),
@@ -39,14 +39,10 @@ export class ViewComponent implements OnInit {
   }
 
   async getter() {
-    return await this.encryption.getFromLocalStorage('Name');
-  }
+    this.mydata = await this.encryption.getFromLocalStorage('Name');
 
-  async ngOnInit() {
-    const name = await this.getter();
-
-    await this.findWithSpe({
-      name: JSON.parse(name.decrypted.replace(/'/g, '"')).data,
+    this.findWithSpe({
+      name: JSON.parse(this.mydata.decrypted.replace(/'/g, '"')).data,
     }).subscribe((ele) => {
       this.family = ele.data[0].family;
       this.genus = ele.data[0].genus;
@@ -56,6 +52,10 @@ export class ViewComponent implements OnInit {
       this.subgenus = ele.data[0].subgenus;
       this.name = ele.data[0].name == undefined ? '' : ele.data[0].name;
     });
+  }
+
+  ngOnInit() {
+    this.getter();
   }
 
   setter() {
