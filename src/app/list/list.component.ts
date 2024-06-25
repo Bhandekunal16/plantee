@@ -5,6 +5,7 @@ import { catchError, debounceTime, switchMap, throwError } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { Router } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
+import { EncryptionService } from '../encryption.service';
 
 @Component({
   selector: 'app-list',
@@ -20,7 +21,11 @@ export class ListComponent implements OnInit {
   public flag2: boolean = false;
   public flag3: boolean = false;
 
-  constructor(private http: HttpClient, private route: Router) {
+  constructor(
+    private http: HttpClient,
+    private route: Router,
+    private encryption: EncryptionService
+  ) {
     this.myForm = new FormGroup({
       family: new FormControl(''),
       scientfiicname: new FormControl(''),
@@ -68,7 +73,7 @@ export class ListComponent implements OnInit {
 
   view(id: any): void {
     this.home();
-    localStorage.setItem('name', id);
+    this.encryption.setToLocalStorage('Name', id);
   }
 
   home(): void {

@@ -10,6 +10,7 @@ import {
 import { FormGroup, FormControl } from '@angular/forms';
 import { Message } from 'primeng/api';
 import { SharedModule } from '../shared/shared.module';
+import { EncryptionService } from '../encryption.service';
 
 @Component({
   selector: 'app-view',
@@ -30,25 +31,31 @@ export class ViewComponent implements OnInit {
   public tribe: string | undefined;
   public name: string | undefined;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private encryption: EncryptionService) {
     this.myForm = new FormGroup({
       email: new FormControl(''),
       message: new FormControl(''),
     });
   }
 
-  ngOnInit(): void {
-    this.findWithSpe({ name: localStorage.getItem('name') }).subscribe(
-      (ele) => {
-        this.family = ele.data[0].family;
-        this.genus = ele.data[0].genus;
-        this.scientfiicname = ele.data[0].scientfiicname;
-        this.subfamily = ele.data[0].subfamily;
-        this.tribe = ele.data[0].tribe;
-        this.subgenus = ele.data[0].subgenus;
-        this.name = ele.data[0].name == undefined ? '' : ele.data[0].name;
-      }
-    );
+  async getter() {
+    return await this.encryption.getFromLocalStorage('Name');
+  }
+
+  async ngOnInit() {
+    const name = await this.getter();
+
+    this.findWithSpe({
+      name: JSON.parse(name.decrypted.replace(/'/g, '"')).data,
+    }).subscribe((ele) => {
+      this.family = ele.data[0].family;
+      this.genus = ele.data[0].genus;
+      this.scientfiicname = ele.data[0].scientfiicname;
+      this.subfamily = ele.data[0].subfamily;
+      this.tribe = ele.data[0].tribe;
+      this.subgenus = ele.data[0].subgenus;
+      this.name = ele.data[0].name == undefined ? '' : ele.data[0].name;
+    });
   }
 
   setter() {

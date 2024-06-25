@@ -7,19 +7,16 @@ export class EncryptionService {
   constructor() {}
 
   async encrypt(data: any) {
-    const response = await fetch(
-      `https://encryption-server.vercel.app/encrypt`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          publicKey: 'plantee',
-          data: data,
-        }),
-      }
-    );
+    const response = await fetch(`https://townhall-ten.vercel.app/encryption`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        publicKey: 'plantee',
+        data: data,
+      }),
+    });
 
     if (!response.ok) {
       throw new Error('Network response was not ok');
@@ -30,32 +27,36 @@ export class EncryptionService {
   }
 
   async decrypt(data: any) {
-    const response = await fetch(
-      `https://encryption-server.vercel.app/decrypt`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          publicKey: 'plantee',
-          data: data,
-        }),
+    try {
+      const response = await fetch(
+        `https://townhall-ten.vercel.app/decryption`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            publicKey: 'plantee',
+            data: data,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
       }
-    );
 
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
+      const resData = await response.json();
+      return resData;
+    } catch (error: any) {
+      return new Error(error);
     }
-
-    const resData = await response.json();
-    return resData;
   }
 
   async setToLocalStorage(key: any, input: any): Promise<any> {
     try {
       const convert = await this.encrypt(input);
-      localStorage.setItem(key, convert);
+      localStorage.setItem(key, convert.encrypted);
     } catch (error: any) {
       return new Error(error);
     }
@@ -64,6 +65,7 @@ export class EncryptionService {
   async getFromLocalStorage(key: any): Promise<any> {
     try {
       const normal = localStorage.getItem(key);
+      console.log(normal);
       return await this.decrypt(normal);
     } catch (error: any) {
       return new Error(error);
