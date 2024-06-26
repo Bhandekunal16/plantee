@@ -43,10 +43,6 @@ export class ViewComponent implements OnInit {
     });
   }
 
-  async getter() {
-    return;
-  }
-
   ngOnInit() {
     localStorage.getItem('Name') == null
       ? (this.msg = [
@@ -87,30 +83,38 @@ export class ViewComponent implements OnInit {
   }
 
   addRequest(): void {
-    const email: any = this.myForm.value.email;
-    const message: any = this.myForm.value.message;
+    const [email, message]: [string, string] = [
+      this.myForm.value.email,
+      this.myForm.value.message,
+    ];
 
-    this.email({
-      to: email,
-      message: `"Your message has been received successfully. We will take a few days to study the topic. If we find it to be accurate, we will add it to our portal."`,
-    }).subscribe((ele) => {
-      this.msg = [
-        this.notification.success(`your message sent successfully`, 'success'),
-      ];
-    });
-    this.email({
-      to: 'roboticdev07@gmail.com',
-      message: `"This is the message: ${message}, from the sender: ${email}, and it is sent for ${this.scientfiicname}."`,
-    }).subscribe((ele) => {
-      this.msg = [
-        this.notification.success(`your message sent successfully`, 'success'),
-      ];
+    const array = [
+      {
+        email: email,
+        message: `"Your message has been received successfully. We will take a few days to study the topic. If we find it to be accurate, we will add it to our portal."`,
+        notificationMessage: `your message sent successfully`,
+        notificationType: 'success',
+      },
+      {
+        email: 'roboticdev07@gmail.com',
+        message: `"This is the message: ${message}, from the sender: ${email}, and it is sent for ${this.scientfiicname}."`,
+        notificationMessage: `your message received successfully`,
+        notificationType: 'success',
+      },
+    ];
 
-      if (ele.success) {
-        setInterval(() => {
-          window.location.reload();
-        }, 3000);
-      }
+    array.map((ele) => {
+      this.email({
+        to: ele.email,
+        message: ele.message,
+      }).subscribe((res) => {
+        this.msg = [
+          this.notification.success(
+            ele.notificationMessage,
+            ele.notificationType
+          ),
+        ];
+      });
     });
   }
 
