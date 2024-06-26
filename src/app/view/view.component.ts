@@ -101,7 +101,7 @@ export class ViewComponent implements OnInit {
       },
     ];
 
-    array.map((ele) => {
+    array.map((ele: any) => {
       this.email({
         to: ele.email,
         message: ele.message,
