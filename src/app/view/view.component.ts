@@ -34,7 +34,6 @@ export class ViewComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private encryption: EncryptionService,
     private notification: NotificationService
   ) {
     this.myForm = new FormGroup({
