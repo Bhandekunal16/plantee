@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { catchError, throwError } from 'rxjs';
 import { Message } from 'primeng/api';
 import { SharedModule } from '../shared/shared.module';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-contact',
@@ -17,7 +18,10 @@ export class ContactComponent {
   public myForm: FormGroup;
   public msg: Message[] | any;
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private notification: NotificationService
+  ) {
     this.myForm = new FormGroup({
       email: new FormControl(''),
       message: new FormControl(''),
@@ -33,11 +37,7 @@ export class ContactComponent {
       message: `your message received successfully.`,
     }).subscribe((ele) => {
       this.msg = [
-        {
-          severity: 'success',
-          summary: 'success',
-          detail: `your message sent successfully`,
-        },
+        this.notification.success(`your message sent successfully`, 'success'),
       ];
     });
     this.email({
@@ -45,11 +45,10 @@ export class ContactComponent {
       message: `this is message : ${message}, sender : ${email}`,
     }).subscribe((ele) => {
       this.msg = [
-        {
-          severity: 'success',
-          summary: 'success',
-          detail: `your message received by us successfully`,
-        },
+        this.notification.success(
+          `your message received by us successfully`,
+          'success'
+        ),
       ];
 
       if (ele.success) {
