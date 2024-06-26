@@ -101,11 +101,7 @@ export class ViewComponent implements OnInit {
       message: `"Your message has been received successfully. We will take a few days to study the topic. If we find it to be accurate, we will add it to our portal."`,
     }).subscribe((ele) => {
       this.msg = [
-        {
-          severity: 'success',
-          summary: 'success',
-          detail: `your message sent successfully`,
-        },
+        this.notification.success(`your message sent successfully`, 'success'),
       ];
     });
     this.email({
@@ -113,11 +109,7 @@ export class ViewComponent implements OnInit {
       message: `"This is the message: ${message}, from the sender: ${email}, and it is sent for ${this.scientfiicname}."`,
     }).subscribe((ele) => {
       this.msg = [
-        {
-          severity: 'success',
-          summary: 'success',
-          detail: `your message sent successfully`,
-        },
+        this.notification.success(`your message sent successfully`, 'success'),
       ];
 
       if (ele.success) {
