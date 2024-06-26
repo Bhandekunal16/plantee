@@ -58,36 +58,6 @@ export class ContactComponent {
         ];
       });
     }
-
-    // Promise.all([
-    //   this.email({
-    //     to: email,
-    //     message: `your message received successfully.`,
-    //   }).subscribe((ele) => {
-    //     this.msg = [
-    //       this.notification.success(
-    //         `your message sent successfully`,
-    //         'success'
-    //       ),
-    //     ];
-    //   }),
-    //   this.email({
-    //     to: 'roboticdev07@gmail.com',
-    //     message: `this is message : ${message}, sender : ${email}`,
-    //   }).subscribe((ele) => {
-    //     this.msg = [
-    //       this.notification.success(
-    //         `your message received by us successfully`,
-    //         'success'
-    //       ),
-    //     ];
-
-    //     if (ele.success)
-    //       setInterval(() => {
-    //         window.location.reload();
-    //       }, 3000);
-    //   }),
-    // ]);
   }
 
   private email(body: any): Observable<any> {
