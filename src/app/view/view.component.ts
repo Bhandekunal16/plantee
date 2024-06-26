@@ -11,7 +11,6 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Message } from 'primeng/api';
 import { SharedModule } from '../shared/shared.module';
 import { NotificationService } from '../notification.service';
-import { ApiManagementService } from '../api-mangement.service';
 
 @Component({
   selector: 'app-view',
@@ -34,8 +33,7 @@ export class ViewComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private notification: NotificationService,
-    private api: ApiManagementService
+    private notification: NotificationService
   ) {
     this.myForm = new FormGroup({
       email: new FormControl(''),
@@ -104,19 +102,17 @@ export class ViewComponent implements OnInit {
     ];
 
     array.map((ele) => {
-      this.api
-        .email({
-          to: ele.email,
-          message: ele.message,
-        })
-        .subscribe((res) => {
-          this.msg = [
-            this.notification.success(
-              ele.notificationMessage,
-              ele.notificationType
-            ),
-          ];
-        });
+      this.email({
+        to: ele.email,
+        message: ele.message,
+      }).subscribe((res) => {
+        this.msg = [
+          this.notification.success(
+            ele.notificationMessage,
+            ele.notificationType
+          ),
+        ];
+      });
     });
   }
 
@@ -146,21 +142,21 @@ export class ViewComponent implements OnInit {
       );
   }
 
-  // email(body: any): Observable<any> {
-  //   const headers = new HttpHeaders({
-  //     'Content-Type': 'application/json',
-  //   });
+  email(body: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
 
-  //   return this.http
-  //     .post<any>(
-  //       'https://mailer-service-eight.vercel.app/message/send-email',
-  //       body,
-  //       { headers }
-  //     )
-  //     .pipe(
-  //       catchError((error) => {
-  //         return throwError(error);
-  //       })
-  //     );
-  // }
+    return this.http
+      .post<any>(
+        'https://mailer-service-eight.vercel.app/message/send-email',
+        body,
+        { headers }
+      )
+      .pipe(
+        catchError((error) => {
+          return throwError(error);
+        })
+      );
+  }
 }
