@@ -58,11 +58,13 @@ export class ListComponent implements OnInit {
       this.findWithGenus({ name: genus }).subscribe((ele) => {
         this.products = ele.data;
       });
-    } else {
-      this.flag = false;
-      this.flag2 = false;
-      this.flag3 = false;
-    }
+    } else this.resetFlags();
+  }
+
+  public resetFlags() {
+    this.flag = false;
+    this.flag2 = false;
+    this.flag3 = false;
   }
 
   ngOnInit(): void {
