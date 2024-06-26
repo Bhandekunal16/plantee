@@ -46,14 +46,12 @@ export class ListComponent implements OnInit {
         this.products = ele.data;
       });
     } else if (scientfiicname !== '') {
-      this.flag = true;
-      this.flag3 = true;
+      [this.flag, this.flag3] = [true, true];
       this.findWithSpe({ name: scientfiicname }).subscribe((ele) => {
         this.products = ele.data;
       });
     } else if (genus !== '') {
-      this.flag = true;
-      this.flag2 = true;
+      [this.flag, this.flag2] = [true, true];
       this.findWithGenus({ name: genus }).subscribe((ele) => {
         this.products = ele.data;
       });
