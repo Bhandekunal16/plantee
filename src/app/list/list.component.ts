@@ -41,8 +41,7 @@ export class ListComponent implements OnInit {
     ];
 
     if (family !== '') {
-      this.flag2 = true;
-      this.flag3 = true;
+      [this.flag2, this.flag3] = [true, true];
       this.findWithFamily({ name: family }).subscribe((ele) => {
         this.products = ele.data;
       });
