@@ -29,8 +29,10 @@ export class ContactComponent {
   }
 
   public submit(): void {
-    const email: any = this.myForm.value.email;
-    const message: any = this.myForm.value.message;
+    const [email, message]: [any, any] = [
+      this.myForm.value.email,
+      this.myForm.value.message,
+    ];
 
     this.email({
       to: email,
