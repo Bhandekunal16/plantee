@@ -43,24 +43,6 @@ export class ViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.encryption
-    //   .getFromLocalStorage('Name')
-    //   .then((ele) => {
-    //     if (ele && ele.decrypted) {
-    //       try {
-    //         const nameData = JSON.parse(ele.decrypted.replace(/'/g, '"')).data;
-
-    //       } catch (error) {
-    //         console.error('Error parsing JSON', error);
-    //       }
-    //     } else {
-    //       console.error('No data found in localStorage');
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.error('Error retrieving data from localStorage', error);
-    //   });
-
     this.findWithSpe({ name: localStorage.getItem('Name') }).subscribe(
       (response) => {
         if (response && response.data && response.data.length > 0) {
