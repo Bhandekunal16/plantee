@@ -50,11 +50,9 @@ export class ViewComponent implements OnInit {
   ngOnInit() {
     localStorage.getItem('Name') == null
       ? (this.msg = [
-          {
-            severity: 'error',
-            summary: 'error',
-            detail: `something went wrong to found data go back & come again in this page`,
-          },
+          this.notification.error(
+            `something went wrong to found data go back & come again in this page`
+          ),
         ])
       : this.findWithSpe({ name: localStorage.getItem('Name') }).subscribe(
           (response) => {
@@ -78,11 +76,7 @@ export class ViewComponent implements OnInit {
           (error) => {
             console.error('Error fetching data', error);
             this.msg = [
-              {
-                severity: 'error',
-                summary: 'error',
-                detail: `something went wrong in fetching data.`,
-              },
+              this.notification.error(`something went wrong in fetching data.`),
             ];
           }
         );

@@ -13,4 +13,12 @@ export class NotificationService {
       detail: input,
     };
   }
+
+  error(input: any) {
+    return {
+      severity: 'error',
+      summary: 'error',
+      detail: input,
+    };
+  }
 }
