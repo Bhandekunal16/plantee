@@ -43,37 +43,45 @@ export class ViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.findWithSpe({ name: localStorage.getItem('Name') }).subscribe(
-      (response) => {
-        if (response && response.data && response.data.length > 0) {
-          const data = response.data[0];
-          this.family = data.family;
-          this.genus = data.genus;
-          this.scientfiicname = data.scientfiicname;
-          this.subfamily = data.subfamily;
-          this.tribe = data.tribe;
-          this.subgenus = data.subgenus;
-          this.name = data.name ?? '';
-          this.msg = [
-            {
-              severity: 'success',
-              summary: 'Found',
-              detail: `you get data of ${data.scientfiicname}`,
-            },
-          ];
-        }
-      },
-      (error) => {
-        console.error('Error fetching data', error);
-        this.msg = [
+    localStorage.getItem('Name') == null
+      ? (this.msg = [
           {
             severity: 'error',
             summary: 'error',
-            detail: `something went wrong in fetching data.`,
+            detail: `something went wrong to found data go back & come again in this page`,
           },
-        ];
-      }
-    );
+        ])
+      : this.findWithSpe({ name: localStorage.getItem('Name') }).subscribe(
+          (response) => {
+            if (response && response.data && response.data.length > 0) {
+              const data = response.data[0];
+              this.family = data.family;
+              this.genus = data.genus;
+              this.scientfiicname = data.scientfiicname;
+              this.subfamily = data.subfamily;
+              this.tribe = data.tribe;
+              this.subgenus = data.subgenus;
+              this.name = data.name ?? '';
+              this.msg = [
+                {
+                  severity: 'success',
+                  summary: 'Found',
+                  detail: `you get data of ${data.scientfiicname}`,
+                },
+              ];
+            }
+          },
+          (error) => {
+            console.error('Error fetching data', error);
+            this.msg = [
+              {
+                severity: 'error',
+                summary: 'error',
+                detail: `something went wrong in fetching data.`,
+              },
+            ];
+          }
+        );
   }
 
   setter() {
