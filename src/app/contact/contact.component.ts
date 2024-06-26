@@ -34,35 +34,60 @@ export class ContactComponent {
       this.myForm.value.message,
     ];
 
-    Promise.all([
-      this.email({
-        to: email,
-        message: `your message received successfully.`,
-      }).subscribe((ele) => {
-        this.msg = [
-          this.notification.success(
-            `your message sent successfully`,
-            'success'
-          ),
-        ];
-      }),
-      this.email({
-        to: 'roboticdev07@gmail.com',
-        message: `this is message : ${message}, sender : ${email}`,
-      }).subscribe((ele) => {
-        this.msg = [
-          this.notification.success(
-            `your message received by us successfully`,
-            'success'
-          ),
-        ];
+    const emailArray = [email, 'roboticdev07@gmail.com'];
+    const messageArray = [
+      `your message received successfully.`,
+      `this is message : ${message}, sender : ${email}`,
+    ];
+    const subscribeMessage = [
+      `your message sent successfully`,
+      `this is message : ${message}, sender : ${email}`,
+    ];
+    const subscribeStatus = ['success', 'success'];
 
-        if (ele.success)
-          setInterval(() => {
-            window.location.reload();
-          }, 3000);
-      }),
-    ]);
+    for (let index = 0; index < emailArray.length; index++) {
+      this.email({
+        to: emailArray[index],
+        message: messageArray[index],
+      }).subscribe((ele) => {
+        this.msg = [
+          this.notification.success(
+            subscribeMessage[index],
+            subscribeStatus[index]
+          ),
+        ];
+      });
+    }
+
+    // Promise.all([
+    //   this.email({
+    //     to: email,
+    //     message: `your message received successfully.`,
+    //   }).subscribe((ele) => {
+    //     this.msg = [
+    //       this.notification.success(
+    //         `your message sent successfully`,
+    //         'success'
+    //       ),
+    //     ];
+    //   }),
+    //   this.email({
+    //     to: 'roboticdev07@gmail.com',
+    //     message: `this is message : ${message}, sender : ${email}`,
+    //   }).subscribe((ele) => {
+    //     this.msg = [
+    //       this.notification.success(
+    //         `your message received by us successfully`,
+    //         'success'
+    //       ),
+    //     ];
+
+    //     if (ele.success)
+    //       setInterval(() => {
+    //         window.location.reload();
+    //       }, 3000);
+    //   }),
+    // ]);
   }
 
   private email(body: any): Observable<any> {
