@@ -6,7 +6,7 @@
   background-color: #314222;
   color: #eff3b8;
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
 }
 
 .loader {

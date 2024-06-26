@@ -30,6 +30,7 @@ export class ViewComponent implements OnInit {
   public subgenus: string | undefined;
   public tribe: string | undefined;
   public name: string | undefined;
+  public description: string | undefined;
 
   constructor(
     private http: HttpClient,
@@ -59,6 +60,7 @@ export class ViewComponent implements OnInit {
               this.tribe = data.tribe;
               this.subgenus = data.subgenus;
               this.name = data.name ?? '';
+              this.description = data.description ?? '';
               this.msg = [
                 this.notification.success(
                   `you get data of ${data.scientfiicname}`,
