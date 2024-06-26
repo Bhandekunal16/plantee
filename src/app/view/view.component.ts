@@ -65,6 +65,13 @@ export class ViewComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching data', error);
+        this.msg = [
+          {
+            severity: 'error',
+            summary: 'error',
+            detail: `something went wrong in fetching data.`,
+          },
+        ];
       }
     );
   }
