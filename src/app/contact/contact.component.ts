@@ -57,11 +57,10 @@ export class ContactComponent {
           ),
         ];
 
-        if (ele.success) {
+        if (ele.success)
           setInterval(() => {
             window.location.reload();
           }, 3000);
-        }
       }),
     ]);
   }
