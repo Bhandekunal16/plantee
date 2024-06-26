@@ -86,7 +86,7 @@ export class ViewComponent implements OnInit {
       this.myForm.value.message,
     ];
 
-    const array : Array<any> = [
+    const array: Array<any> = [
       {
         email: email,
         message: `"Your message has been received successfully. We will take a few days to study the topic. If we find it to be accurate, we will add it to our portal."`,
