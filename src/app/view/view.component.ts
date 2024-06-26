@@ -11,6 +11,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Message } from 'primeng/api';
 import { SharedModule } from '../shared/shared.module';
 import { EncryptionService } from '../encryption.service';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-view',
@@ -31,7 +32,11 @@ export class ViewComponent implements OnInit {
   public tribe: string | undefined;
   public name: string | undefined;
 
-  constructor(private http: HttpClient, private encryption: EncryptionService) {
+  constructor(
+    private http: HttpClient,
+    private encryption: EncryptionService,
+    private notification: NotificationService
+  ) {
     this.myForm = new FormGroup({
       email: new FormControl(''),
       message: new FormControl(''),
@@ -63,11 +68,10 @@ export class ViewComponent implements OnInit {
               this.subgenus = data.subgenus;
               this.name = data.name ?? '';
               this.msg = [
-                {
-                  severity: 'success',
-                  summary: 'Found',
-                  detail: `you get data of ${data.scientfiicname}`,
-                },
+                this.notification.success(
+                  `you get data of ${data.scientfiicname}`,
+                  'Found'
+                ),
               ];
             }
           },
