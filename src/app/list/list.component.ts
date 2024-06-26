@@ -5,6 +5,7 @@ import { catchError, debounceTime, switchMap, throwError } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { Router } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
+import { FileManagementService } from '../file-management.service';
 
 @Component({
   selector: 'app-list',
@@ -20,7 +21,11 @@ export class ListComponent implements OnInit {
   public flag2: boolean = false;
   public flag3: boolean = false;
 
-  constructor(private http: HttpClient, private route: Router) {
+  constructor(
+    private http: HttpClient,
+    private route: Router,
+    private file: FileManagementService
+  ) {
     this.myForm = new FormGroup({
       family: new FormControl(''),
       scientfiicname: new FormControl(''),
@@ -175,21 +180,6 @@ export class ListComponent implements OnInit {
       csvRows.push(values.join(','));
     }
 
-    this.downloadCSV(csvRows.join('\n'), 'download.csv');
-  }
-
-  downloadCSV(csvData: any, filename: any) {
-    const blob = new Blob([csvData], { type: 'text/csv' });
-    const url = window.URL.createObjectURL(blob);
-
-    const a = document.createElement('a');
-    a.setAttribute('href', url);
-    a.setAttribute('download', filename);
-    a.style.display = 'none';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-
-    window.URL.revokeObjectURL(url);
+    this.file.downloadCSV(csvRows.join('\n'), 'download.csv');
   }
 }
