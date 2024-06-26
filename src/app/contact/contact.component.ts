@@ -58,6 +58,8 @@ export class ContactComponent {
         ];
       });
     }
+
+    this.myForm.reset();
   }
 
   private email(body: any): Observable<any> {
