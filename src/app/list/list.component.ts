@@ -71,12 +71,12 @@ export class ListComponent implements OnInit {
     });
   }
 
-  view(id: any): void {
-    this.home();
-    this.encryption.setToLocalStorage('Name', id);
+  async view(id: any) {
+    await this.encryption.setToLocalStorage('Name', id);
+    await this.home();
   }
 
-  home(): void {
+  async home() {
     this.route.navigate(['/view']);
   }
 

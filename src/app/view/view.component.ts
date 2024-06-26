@@ -30,7 +30,7 @@ export class ViewComponent implements OnInit {
   public subgenus: string | undefined;
   public tribe: string | undefined;
   public name: string | undefined;
-  mydata: any;
+
   constructor(private http: HttpClient, private encryption: EncryptionService) {
     this.myForm = new FormGroup({
       email: new FormControl(''),
@@ -39,23 +39,43 @@ export class ViewComponent implements OnInit {
   }
 
   async getter() {
-    this.mydata = await this.encryption.getFromLocalStorage('Name');
-
-    this.findWithSpe({
-      name: JSON.parse(this.mydata.decrypted.replace(/'/g, '"')).data,
-    }).subscribe((ele) => {
-      this.family = ele.data[0].family;
-      this.genus = ele.data[0].genus;
-      this.scientfiicname = ele.data[0].scientfiicname;
-      this.subfamily = ele.data[0].subfamily;
-      this.tribe = ele.data[0].tribe;
-      this.subgenus = ele.data[0].subgenus;
-      this.name = ele.data[0].name == undefined ? '' : ele.data[0].name;
-    });
+    return;
   }
 
   ngOnInit() {
-    this.getter();
+    this.encryption
+      .getFromLocalStorage('Name')
+      .then((ele) => {
+        if (ele && ele.decrypted) {
+          try {
+            const nameData = JSON.parse(ele.decrypted.replace(/'/g, '"')).data;
+            this.findWithSpe({ name: nameData }).subscribe(
+              (response) => {
+                if (response && response.data && response.data.length > 0) {
+                  const data = response.data[0];
+                  this.family = data.family;
+                  this.genus = data.genus;
+                  this.scientfiicname = data.scientificname;
+                  this.subfamily = data.subfamily;
+                  this.tribe = data.tribe;
+                  this.subgenus = data.subgenus;
+                  this.name = data.name ?? '';
+                }
+              },
+              (error) => {
+                console.error('Error fetching data', error);
+              }
+            );
+          } catch (error) {
+            console.error('Error parsing JSON', error);
+          }
+        } else {
+          console.error('No data found in localStorage');
+        }
+      })
+      .catch((error) => {
+        console.error('Error retrieving data from localStorage', error);
+      });
   }
 
   setter() {
