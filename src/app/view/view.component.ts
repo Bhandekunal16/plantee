@@ -10,7 +10,6 @@ import {
 import { FormGroup, FormControl } from '@angular/forms';
 import { Message } from 'primeng/api';
 import { SharedModule } from '../shared/shared.module';
-import { EncryptionService } from '../encryption.service';
 import { NotificationService } from '../notification.service';
 
 @Component({
