@@ -72,7 +72,8 @@ export class ListComponent implements OnInit {
   }
 
   async view(id: any) {
-    await this.encryption.setToLocalStorage('Name', id);
+    // await this.encryption.setToLocalStorage('Name', id);
+    localStorage.setItem('Name', id);
     await this.home();
   }
 

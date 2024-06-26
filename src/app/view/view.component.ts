@@ -43,39 +43,41 @@ export class ViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.encryption
-      .getFromLocalStorage('Name')
-      .then((ele) => {
-        if (ele && ele.decrypted) {
-          try {
-            const nameData = JSON.parse(ele.decrypted.replace(/'/g, '"')).data;
-            this.findWithSpe({ name: nameData }).subscribe(
-              (response) => {
-                if (response && response.data && response.data.length > 0) {
-                  const data = response.data[0];
-                  this.family = data.family;
-                  this.genus = data.genus;
-                  this.scientfiicname = data.scientfiicname;
-                  this.subfamily = data.subfamily;
-                  this.tribe = data.tribe;
-                  this.subgenus = data.subgenus;
-                  this.name = data.name ?? '';
-                }
-              },
-              (error) => {
-                console.error('Error fetching data', error);
-              }
-            );
-          } catch (error) {
-            console.error('Error parsing JSON', error);
-          }
-        } else {
-          console.error('No data found in localStorage');
+    // this.encryption
+    //   .getFromLocalStorage('Name')
+    //   .then((ele) => {
+    //     if (ele && ele.decrypted) {
+    //       try {
+    //         const nameData = JSON.parse(ele.decrypted.replace(/'/g, '"')).data;
+
+    //       } catch (error) {
+    //         console.error('Error parsing JSON', error);
+    //       }
+    //     } else {
+    //       console.error('No data found in localStorage');
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.error('Error retrieving data from localStorage', error);
+    //   });
+
+    this.findWithSpe({ name: localStorage.getItem('Name') }).subscribe(
+      (response) => {
+        if (response && response.data && response.data.length > 0) {
+          const data = response.data[0];
+          this.family = data.family;
+          this.genus = data.genus;
+          this.scientfiicname = data.scientfiicname;
+          this.subfamily = data.subfamily;
+          this.tribe = data.tribe;
+          this.subgenus = data.subgenus;
+          this.name = data.name ?? '';
         }
-      })
-      .catch((error) => {
-        console.error('Error retrieving data from localStorage', error);
-      });
+      },
+      (error) => {
+        console.error('Error fetching data', error);
+      }
+    );
   }
 
   setter() {
