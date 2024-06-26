@@ -54,6 +54,13 @@ export class ViewComponent implements OnInit {
           this.tribe = data.tribe;
           this.subgenus = data.subgenus;
           this.name = data.name ?? '';
+          this.msg = [
+            {
+              severity: 'success',
+              summary: 'Found',
+              detail: `you get data of ${data.scientfiicname}`,
+            },
+          ];
         }
       },
       (error) => {
