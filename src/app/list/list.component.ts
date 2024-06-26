@@ -59,9 +59,7 @@ export class ListComponent implements OnInit {
   }
 
   public resetFlags() {
-    this.flag = false;
-    this.flag2 = false;
-    this.flag3 = false;
+    [this.flag, this.flag2, this.flag3] = [false, false, false];
   }
 
   ngOnInit(): void {
