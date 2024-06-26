@@ -55,7 +55,7 @@ export class ViewComponent implements OnInit {
                   const data = response.data[0];
                   this.family = data.family;
                   this.genus = data.genus;
-                  this.scientfiicname = data.scientificname;
+                  this.scientfiicname = data.scientfiicname;
                   this.subfamily = data.subfamily;
                   this.tribe = data.tribe;
                   this.subgenus = data.subgenus;
