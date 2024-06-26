@@ -34,30 +34,31 @@ export class ContactComponent {
       this.myForm.value.message,
     ];
 
-    const emailArray = [email, 'roboticdev07@gmail.com'];
-    const messageArray = [
-      `your message received successfully.`,
-      `this is message : ${message}, sender : ${email}`,
+    const Array = [
+      {
+        email: email,
+        message: `your message received successfully.`,
+        subscribeMessage: `your message sent successfully`,
+        status: 'success',
+      },
+      {
+        email: 'roboticdev07@gmail.com',
+        message: `this is message : ${message}, sender : ${email}`,
+        subscribeMessage: `your message received by us successfully`,
+        status: 'success',
+      },
     ];
-    const subscribeMessage = [
-      `your message sent successfully`,
-      `your message received by us successfully`,
-    ];
-    const subscribeStatus = ['success', 'success'];
 
-    for (let index = 0; index < emailArray.length; index++) {
+    Array.map((ele) => {
       this.email({
-        to: emailArray[index],
-        message: messageArray[index],
-      }).subscribe((ele) => {
+        to: ele.email,
+        message: ele.message,
+      }).subscribe((res) => {
         this.msg = [
-          this.notification.success(
-            subscribeMessage[index],
-            subscribeStatus[index]
-          ),
+          this.notification.success(ele.subscribeMessage, ele.status),
         ];
       });
-    }
+    });
 
     this.myForm.reset();
   }
