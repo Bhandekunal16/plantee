@@ -10,3 +10,7 @@
   box-sizing: border-box;
   font-family: inherit;
 }
+
+body { 
+  background-color: #eff3b8;
+}
