@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
+import { NetworkService } from '../network.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +12,8 @@ import { SharedModule } from '../shared/shared.module';
 })
 export class DashboardComponent {
   public item: any[] | undefined;
-  constructor(private router: Router) {}
+  public isOnline: boolean | undefined;
+  constructor(private router: Router, private networkService: NetworkService) {}
 
   private contact(): void {
     this.router.navigate(['/contact']);
@@ -30,6 +32,10 @@ export class DashboardComponent {
   }
 
   ngOnInit() {
+    this.networkService.onlineStatus$.subscribe((status) => {
+      this.isOnline = status;
+    });
+
     this.item = [
       {
         label: 'Home',
@@ -58,6 +64,10 @@ export class DashboardComponent {
         command: () => {
           this.contact();
         },
+      },
+      {
+        label: this.isOnline == true ? 'Online' : 'Offline',
+        icon: this.isOnline == true ? 'pi pi-wifi' : 'pi pi-globe',
       },
     ];
   }

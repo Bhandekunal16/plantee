@@ -9,8 +9,15 @@ export class NetworkService {
   onlineStatus$ = this.onlineStatus.asObservable();
 
   constructor() {
-    window.addEventListener('online', () => this.updateNetworkStatus(true));
-    window.addEventListener('offline', () => this.updateNetworkStatus(false));
+    this.updateNetworkStatus(navigator.onLine);
+    setInterval(() => {
+      this.checkNetworkStatus();
+    }, 60000);
+  }
+
+  private checkNetworkStatus() {
+    const isOnline = navigator.onLine;
+    this.updateNetworkStatus(isOnline);
   }
 
   private updateNetworkStatus(isOnline: boolean) {
