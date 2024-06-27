@@ -43,6 +43,7 @@ export class DashboardComponent {
         command: () => {
           this.home();
         },
+        styleClass: 'menucus',
       },
       {
         label: 'Plants',
@@ -50,6 +51,7 @@ export class DashboardComponent {
         command: () => {
           this.list();
         },
+        styleClass: 'menucus',
       },
       {
         label: 'About',
@@ -57,6 +59,7 @@ export class DashboardComponent {
         command: () => {
           this.about();
         },
+        styleClass: 'menucus',
       },
       {
         label: 'Contact',
@@ -64,10 +67,12 @@ export class DashboardComponent {
         command: () => {
           this.contact();
         },
+        styleClass: 'menucus',
       },
       {
         label: this.update(this.isOnline),
         icon: this.updateSymbol(this.isOnline),
+        styleClass: 'menucus',
       },
     ];
   }
