@@ -49,14 +49,51 @@
   }
 }
 
-p-table th {
+/* p-table th {
   background-color: #719646;
 }
 
 p-table td {
   background-color: #8fb062;
-}
+} */
 
 .dowload_file_div {
   padding: 1%;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.product-card {
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  min-width: 15rem;
+  background-color: #719646;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  overflow: hidden;
+}
+
+.card-item {
+  margin: 0.5rem 0;
+}
+
+.card-container p {
+  text-align: center;
 }
