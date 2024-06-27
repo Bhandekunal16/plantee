@@ -81,9 +81,7 @@ export class ListComponent implements OnInit {
       (error) => {
         this.msg = [
           this.notification.error(
-            `something went wrong in fetching data. ${
-              this.isOnline ? 'your are online' : 'your are offline'
-            }`
+            ` ${this.isOnline ? 'your are online' : 'your are offline'}`
           ),
         ];
       }
