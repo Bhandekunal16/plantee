@@ -32,12 +32,15 @@
   margin-left: 1%;
 }
 
-@media (max-width: 1440px) {
-  .home-container-sec {
-    height: 50vh;
-  }
+@media (max-width: 1200px) {
 
   .home-container-sec-button-grid {
     width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-container-sec {
+    height: 50vh;
   }
 }
