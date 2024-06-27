@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { FileManagementService } from '../file-management.service';
 import { Message } from 'primeng/api';
 import { NotificationService } from '../notification.service';
+import { NetworkService } from '../network.service';
 
 @Component({
   selector: 'app-list',
@@ -23,12 +24,14 @@ export class ListComponent implements OnInit {
   public flag2: boolean = false;
   public flag3: boolean = false;
   public msg: Message[] | any;
+  public isOnline: boolean | any;
 
   constructor(
     private http: HttpClient,
     private route: Router,
     private file: FileManagementService,
-    private notification: NotificationService
+    private notification: NotificationService,
+    private networkService: NetworkService
   ) {
     this.myForm = new FormGroup({
       family: new FormControl(''),
@@ -67,6 +70,10 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.networkService.onlineStatus$.subscribe((status) => {
+      this.isOnline = status;
+    });
+
     this.customerUnsubscribed().subscribe(
       (ele) => {
         this.products = ele.data;
@@ -74,7 +81,9 @@ export class ListComponent implements OnInit {
       (error) => {
         this.msg = [
           this.notification.error(
-            `something went wrong in fetching data. ${error.statusText}`
+            `something went wrong in fetching data. ${
+              this.isOnline ? 'your are online' : 'your are offline'
+            }`
           ),
         ];
       }
