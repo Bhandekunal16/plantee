@@ -7,3 +7,8 @@
   right: 0;
   z-index: 999;
 }
+
+::ng-deep .menucus {
+  background-color: #99b66e;
+  color: #314222;
+}
