@@ -12,7 +12,7 @@ import { NetworkService } from '../network.service';
 })
 export class DashboardComponent {
   public item: any[] | undefined;
-  public isOnline: boolean | undefined;
+  public isOnline: boolean | any;
   constructor(private router: Router, private networkService: NetworkService) {}
 
   private contact(): void {
@@ -66,9 +66,17 @@ export class DashboardComponent {
         },
       },
       {
-        label: this.isOnline == true ? 'Online' : 'Offline',
-        icon: this.isOnline == true ? 'pi pi-wifi' : 'pi pi-globe',
+        label: this.update(this.isOnline),
+        icon: this.updateSymbol(this.isOnline),
       },
     ];
+  }
+
+  update(input: boolean) {
+    return input ? 'Online' : 'Offline';
+  }
+
+  updateSymbol(input: boolean) {
+    return input ? 'pi pi-wifi' : 'pi pi-globe';
   }
 }
