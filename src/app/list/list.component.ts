@@ -72,10 +72,9 @@ export class ListComponent implements OnInit {
         this.products = ele.data;
       },
       (error) => {
-        console.log(error);
         this.msg = [
           this.notification.error(
-            `something went wrong in fetching data. ${error}`
+            `something went wrong in fetching data. ${error.statusText}`
           ),
         ];
       }
