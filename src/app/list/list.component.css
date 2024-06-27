@@ -74,6 +74,7 @@ p-table td {
   padding: 1rem;
   min-width: 15rem;
   background-color: #719646;
+  color: #273A2F;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: transform 0.2s;
