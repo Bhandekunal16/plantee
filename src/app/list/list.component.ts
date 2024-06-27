@@ -6,6 +6,8 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Router } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { FileManagementService } from '../file-management.service';
+import { Message } from 'primeng/api';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-list',
@@ -20,11 +22,13 @@ export class ListComponent implements OnInit {
   public flag: boolean = false;
   public flag2: boolean = false;
   public flag3: boolean = false;
+  public msg: Message[] | any;
 
   constructor(
     private http: HttpClient,
     private route: Router,
-    private file: FileManagementService
+    private file: FileManagementService,
+    private notification: NotificationService
   ) {
     this.myForm = new FormGroup({
       family: new FormControl(''),
@@ -63,9 +67,19 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.customerUnsubscribed().subscribe((ele) => {
-      this.products = ele.data;
-    });
+    this.customerUnsubscribed().subscribe(
+      (ele) => {
+        this.products = ele.data;
+      },
+      (error) => {
+        console.log(error);
+        this.msg = [
+          this.notification.error(
+            `something went wrong in fetching data. ${error}`
+          ),
+        ];
+      }
+    );
   }
 
   async view(id: any) {
