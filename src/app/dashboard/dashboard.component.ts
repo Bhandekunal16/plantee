@@ -77,11 +77,11 @@ export class DashboardComponent {
     ];
   }
 
-  update(input: boolean) {
+  private update(input: boolean): string {
     return input ? 'Online' : 'Offline';
   }
 
-  updateSymbol(input: boolean) {
+  private updateSymbol(input: boolean): string {
     return input ? 'pi pi-wifi' : 'pi pi-globe';
   }
 }
