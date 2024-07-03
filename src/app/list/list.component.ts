@@ -9,6 +9,7 @@ import { FileManagementService } from '../file-management.service';
 import { Message } from 'primeng/api';
 import { NotificationService } from '../notification.service';
 import { NetworkService } from '../network.service';
+import { promises } from 'node:dns';
 
 @Component({
   selector: 'app-list',
@@ -40,7 +41,7 @@ export class ListComponent implements OnInit {
     });
   }
 
-  selector(): void {
+  public selector(): void {
     const [family, scientfiicname, genus]: [string, string, string] = [
       this.myForm.get('family')?.value,
       this.myForm.get('scientfiicname')?.value,
@@ -88,16 +89,16 @@ export class ListComponent implements OnInit {
     );
   }
 
-  async view(id: any) {
+  async view(id: any): Promise<void> {
     localStorage.setItem('Name', id);
     await this.home();
   }
 
-  async home() {
+  private home(): void {
     this.route.navigate(['/view']);
   }
 
-  findWithFamily(body: any): Observable<any> {
+  private findWithFamily(body: any): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
@@ -120,7 +121,7 @@ export class ListComponent implements OnInit {
       );
   }
 
-  findWithGenus(body: any): Observable<any> {
+  private findWithGenus(body: any): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
@@ -146,7 +147,7 @@ export class ListComponent implements OnInit {
       );
   }
 
-  findWithSpe(body: any): Observable<any> {
+  private findWithSpe(body: any): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
@@ -172,7 +173,7 @@ export class ListComponent implements OnInit {
       );
   }
 
-  customerUnsubscribed(): Observable<any> {
+  private customerUnsubscribed(): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
@@ -186,9 +187,8 @@ export class ListComponent implements OnInit {
       );
   }
 
-  arrayToCSV() {
+  public arrayToCSV(): void {
     const csvRows = [];
-
     const headers = Object.keys(this.products[0]);
     csvRows.push(headers.join(','));
 
