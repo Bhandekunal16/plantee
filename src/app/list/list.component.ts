@@ -89,7 +89,7 @@ export class ListComponent implements OnInit {
     );
   }
 
-  async view(id: any): Promise<void> {
+  public async view(id: any): Promise<void> {
     localStorage.setItem('Name', id);
     await this.home();
   }
