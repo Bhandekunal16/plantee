@@ -66,7 +66,7 @@ export class ListComponent implements OnInit {
     } else this.resetFlags();
   }
 
-  public resetFlags() {
+  public resetFlags(): void {
     [this.flag, this.flag2, this.flag3] = [false, false, false];
   }
 
