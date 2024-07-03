@@ -188,12 +188,14 @@ export class ListComponent implements OnInit {
   }
 
   public arrayToCSV(): void {
-    const csvRows = [];
-    const headers = Object.keys(this.products[0]);
+    const [csvRows, headers]: [any[], any] = [
+      [],
+      Object.keys(this.products[0]),
+    ];
     csvRows.push(headers.join(','));
 
     for (const row of this.products) {
-      const values = headers.map((header) => {
+      const values = headers.map((header: string | number) => {
         const escaped = ('' + row[header]).replace(/"/g, '\\"');
         return `"${escaped}"`;
       });
